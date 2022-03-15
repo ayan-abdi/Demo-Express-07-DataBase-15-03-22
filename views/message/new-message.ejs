@@ -1,0 +1,19 @@
+<%-include('../..partials/_header.ejs') %>
+
+<h1>Nous avons bien reçu votre message </h1>
+<form method="post">
+    <div>
+        <label for="pseudo"> Pseudo : </label>
+        <input type="text" name="pseudo" id="pseudo"></input>
+        <% if(error && error['pseudo']) { %>
+        <span> Le pseudo est requis !</span>
+        <% } %>
+    </div>
+    <div>
+        <label for="msg"> Message : </label>
+        <input type="text" name="msg" id="msg"></input>
+    </div>
+    <div><button type="submit"> Envoyer</button>
+    </div>
+</form>
+<%-include('../..partials/_footer.ejs') %>
