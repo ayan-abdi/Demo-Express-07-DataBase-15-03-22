@@ -1,0 +1,15 @@
+h1 {
+    color: darkcyan
+}
+
+.label-error {
+    color: crimson;
+    font-style: oblique;
+    margin-left: 2ch;
+}
+
+form label::after {
+    content: ':';
+    margin-right: 1ch;
+    margin-left: 1ch;
+}

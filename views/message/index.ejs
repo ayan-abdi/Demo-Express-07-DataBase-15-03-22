@@ -1,4 +1,10 @@
-<%-include('../..partials/_header.ejs') %>
+<%-include('../partials/_header.ejs') %>
 
-<h1>Envoyer vos messages ici </h1>
-<%-include('../..partials/_footer.ejs') %>
+<h1>Listes de mes messages ici </h1>
+<dl>
+    <% for( const message of messages) { %> 
+    <dt><%= message.Pseudo %></dt>
+    <dt><%= message.Content %> </dt>
+    <% } %> 
+</dl>
+<%-include('../partials/_footer.ejs') %>

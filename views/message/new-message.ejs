@@ -1,19 +1,22 @@
-<%-include('../..partials/_header.ejs') %>
+<%-include('../partials/_header.ejs') %>
 
 <h1>Nous avons bien reçu votre message </h1>
 <form method="post">
     <div>
         <label for="pseudo"> Pseudo : </label>
-        <input type="text" name="pseudo" id="pseudo"></input>
-        <% if(error && error['pseudo']) { %>
-        <span> Le pseudo est requis !</span>
+        <input type="text" name="pseudo" id="pseudo" value="<%= data['pseudo'] %>" required>
+        <% if(errors && errors['pseudo']) { %>
+        <span class="label-error"> <<%= errors[ 'pseudo']  %>></span>
         <% } %>
     </div>
     <div>
         <label for="msg"> Message : </label>
-        <input type="text" name="msg" id="msg"></input>
+        <input type="text" name="msg" id="msg" value="<%= data['msg'] %>" required>
+        <% if(errors && errors['msg']) { %>
+        <span class="label-error"><%= errors[ 'msg']  %></span>
+        <% } %>
     </div>
     <div><button type="submit"> Envoyer</button>
     </div>
 </form>
-<%-include('../..partials/_footer.ejs') %>
+<%-include('../partials/_footer.ejs') %>

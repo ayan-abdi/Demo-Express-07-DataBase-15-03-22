@@ -1,14 +1,14 @@
-const res = require('express/lib/response');
-
-const homeContoller = {
+const homeController = {
 
     index: (req, res) => {
-        res.sendStatus(501);
+        res.render('home/index', { title: 'Zone d accueil' });
     },
 
     about: (req, res) => {
-        res.sendStatus(501);
+        res.render('home/about', { title:'Page d acueil' });
     }
 };
 
-module.exports = homeContoller;
+module.exports = homeController;
+
+
