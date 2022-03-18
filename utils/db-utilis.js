@@ -12,12 +12,12 @@ const createDbConnection = async () => {
     return db;
 };
 
-// Methode pour controler si avant lancement de mon server si tout fonctionne parfaitement
+// Methode pour controler avant lancement de mon server si tout fonctionne parfaitement
 const testDbConnection = async () => {
         try {
             const dbtest = await createDbConnection();
             dbtest.close();
-            console.log('COUCOU ♥');
+            console.log('Connection DB ok ♥');
         }
         catch (error) {
             console.error(error);

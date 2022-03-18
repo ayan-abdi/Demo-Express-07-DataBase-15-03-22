@@ -16,7 +16,28 @@ const messageController = {
     },
     detail: (req, res)=> {
         const { id } = req.params;
-        res.render('message/detail', { title: `Detail du message ${id}`})
+        
+        // recup des datas
+        messageModel.getById(id)
+            .then(message => {
+
+                if(!message) {
+                    return res.sendStatus(404);               
+                }
+
+                const optionDate = {
+                    dateStyle : 'long',
+                    timeStyle : 'short',
+                    timeZone: 'Europe/Brussels'
+                };
+                console.log(message.createDate);
+
+                res.render('message/detail',
+                { title: `Detail du message ${id}`,
+                message,
+                formatedCreateDate: message.createDate.toLocaleString('fr-be', optionDate)
+                });
+            });
     },
 
     // GET 
