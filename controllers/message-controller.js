@@ -6,11 +6,11 @@ const messageController = {
 
     index: (req, res) => {
         // Affichage de la liste des messages
-        const messages = messageModel.getAll()
+        messageModel.getAll()
         .then(messages => {
             console.log(messages);
             res.render('message/index', { title : 'Liste des messages', messages});
-        })
+        });
 
 
     },
@@ -50,10 +50,16 @@ const messageController = {
         // console.log(req.body);
         // const { body } = req;
 
-        messageSchema.validate(req.body, { abortEarly:  false})
+        messageSchema.validate(req.body, { abortEarly:  false })
             .then((data) => {
-                console.log('data', data);
+                
                 // Ajouter dans la DB
+                messageModel.insert({
+                    pseudo: data.pseudo,
+                    content: data.msg
+                }).then(id => {
+                    console.log(`Message ${id}`);
+                });
                 res.redirect('/message');
             })
             .catch((ValidationError) => {

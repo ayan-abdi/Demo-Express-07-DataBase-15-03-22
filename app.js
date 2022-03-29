@@ -37,5 +37,5 @@ app.use((req, res) => {
 })
 // Lancement du server
 app.listen(PORT, () => {
-    console.log(`Kombinen in mijn server in ${PORT} ${NODE_ENV}`);
+    console.log(`Kombinen in mijn server in ${PORT} [${NODE_ENV}]`);
 });

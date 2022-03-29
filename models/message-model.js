@@ -19,11 +19,11 @@ const messageModel = {
         try {
             const querySQL = 'SELECT * FROM MessageId WHERE MessageId = @id;';
             const request = new mssql.Request(db);
-            request.input('Id, mssql.BigInt, id');
+            request.input('Id', mssql.BigInt, id);
     
             // Execution de la requete
             const result= await request.query(querySQL)
-            db.close();
+       
             // dans le cas ou le model recoit un infos qui n'existe pas  il return null
             if(result.recordset.length !== 1) {
                 return null;
@@ -36,20 +36,20 @@ const messageModel = {
 
     },
 
-    insert: async ({ pseudo,content}) => {
+    insert: async ({ pseudo,content }) => {
         let db;
         try {
             db = await createDbConnection();
-            const querySQL = 'INSERT INTO Message (Pseudo, Content)'
-                            +' OUTPUT inserted.MessageId'  //pour recupere un id par exemple
-                            + ' VALUES (@pseudo, @content)'; //
+            const querySQL = 'INSERT INTO Message (Pseudo, Content, CreateDate)'
+                            + ' OUTPUT inserted.MessageId'  //pour recupere un id par exemple
+                            + ' VALUES (@pseudo, @content, createDate)'; //
             // On inclu des infos dans ma table sql à savoir pseudo et content qui proviennent de mon formulaire
-            const request = new mssql.Request();
+            const request = new mssql.Request(db);
             request.input('pseudo',mssql.NVarChar, pseudo)
             request.input('content', mssql.NVarChar, content) //Pour avoir un code bien structurer ou on specifie le type de variable a renvoyer
-            request.output('createDate', mssql.DateTime2, new Date());                            
+            request.output('createDate', mssql.DateTime2, new Date());  
+
             const result = await request.query(querySQL)
-            
             return result.recordset[0]['MessageId'];
         } 
         finally {

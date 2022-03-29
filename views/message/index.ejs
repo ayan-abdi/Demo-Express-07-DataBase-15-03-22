@@ -2,9 +2,9 @@
 
 <h1>Listes de mes messages ici </h1>
 <dl>
-    <% for( const message of messages) { %> 
-    <dt><%= message.Pseudo %></dt>
-    <dt><%= message.Content %> </dt>
+    <% for(const message of messages) { %> 
+    <dt><%= message.pseudo %></dt>
+    <dt><%= message.content %> </dt>
     <% } %> 
 </dl>
 <%-include('../partials/_footer.ejs') %>

@@ -1,11 +1,11 @@
 const { ValidationError } = require('yup');
 /**
  * 
- * @param {ValidationError} ValidationError 
+ * @param {ValidationError} validationError 
  * @returns{object}
  */
 
-const getErrorMessage = (ValidationError) => {
+const getErrorMessage = (validationError) => {
     const result = ValidationError.inner.reduce((errors, current) => {
         const { path, message } = current; 
         if(!errors[path]) {
